@@ -1,0 +1,311 @@
+<html>
+<head>
+<title>Quiz.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Quiz.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">javaSwing</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.awt.EventQueue</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">javax.swing.JFrame</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.JLabel</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.JTextField</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.Font</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.JRadioButton</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.JSeparator</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.SwingConstants</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionListener</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionEvent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.JButton</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Quiz {</span>
+
+    <span class="s0">private </span><span class="s1">JFrame frame</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JTextField imieTextField</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">JTextField nazwiskoTextField</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">Integer licznik = </span><span class="s2">0</span><span class="s0">;</span>
+
+
+    <span class="s0">public static void </span><span class="s1">main(String[] args) {</span>
+        <span class="s1">EventQueue.invokeLater(</span><span class="s0">new </span><span class="s1">Runnable() {</span>
+            <span class="s0">public void </span><span class="s1">run() {</span>
+                <span class="s0">try </span><span class="s1">{</span>
+                    <span class="s1">Quiz window = </span><span class="s0">new </span><span class="s1">Quiz()</span><span class="s0">;</span>
+                    <span class="s1">window.frame.setVisible(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">} </span><span class="s0">catch </span><span class="s1">(Exception e) {</span>
+                    <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">public </span><span class="s1">Quiz() {</span>
+        <span class="s1">initialize()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+
+    <span class="s0">private void </span><span class="s1">initialize() {</span>
+
+        <span class="s1">frame = </span><span class="s0">new </span><span class="s1">JFrame()</span><span class="s0">;</span>
+        <span class="s1">frame.setBounds(</span><span class="s2">100</span><span class="s0">, </span><span class="s2">100</span><span class="s0">, </span><span class="s2">691</span><span class="s0">, </span><span class="s2">588</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().setLayout(</span><span class="s0">null</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">JRadioButton Windows2 = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Windows &quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton Windows = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Windows &quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton Compact = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Compact Disc&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton obliczenia = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Do obliczeń&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton zapis = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Zapisu Danych&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton tysiac = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;1024&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">JRadioButton Central = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Central Disc&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel licznikPunktow = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">licznikPunktow.setText(</span><span class="s3">&quot;0&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">Central.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Central.isSelected()) {</span>
+                    <span class="s1">Compact.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik -= </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">JRadioButton Apple = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Apple&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Apple.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Apple.isSelected()) {</span>
+                    <span class="s1">Windows.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik -= </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">JRadioButton Apple2 = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;Apple &quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">Apple2.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Apple2.isSelected()) {</span>
+                    <span class="s1">Windows2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik -= </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+
+
+        <span class="s1">JLabel lblNewLabel = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;Imię&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel.setBounds(</span><span class="s2">36</span><span class="s0">, </span><span class="s2">23</span><span class="s0">, </span><span class="s2">48</span><span class="s0">, </span><span class="s2">14</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel)</span><span class="s0">;</span>
+
+
+        <span class="s1">obliczenia.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(obliczenia.isSelected()) {</span>
+                    <span class="s1">zapis.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik -= </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">JRadioButton dziesiec = </span><span class="s0">new </span><span class="s1">JRadioButton(</span><span class="s3">&quot;108&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">dziesiec.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(dziesiec.isSelected()) {</span>
+                    <span class="s1">tysiac.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik -= </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+
+
+        <span class="s1">JLabel lblNewLabel_1 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;Nazwisko&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_1.setBounds(</span><span class="s2">36</span><span class="s0">, </span><span class="s2">59</span><span class="s0">, </span><span class="s2">85</span><span class="s0">, </span><span class="s2">14</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_1)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_2 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;Numer indeksu&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_2.setBounds(</span><span class="s2">36</span><span class="s0">, </span><span class="s2">105</span><span class="s0">, </span><span class="s2">105</span><span class="s0">, </span><span class="s2">14</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_2)</span><span class="s0">;</span>
+
+        <span class="s1">imieTextField = </span><span class="s0">new </span><span class="s1">JTextField()</span><span class="s0">;</span>
+        <span class="s1">imieTextField.setBounds(</span><span class="s2">151</span><span class="s0">, </span><span class="s2">20</span><span class="s0">, </span><span class="s2">96</span><span class="s0">, </span><span class="s2">20</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(imieTextField)</span><span class="s0">;</span>
+        <span class="s1">imieTextField.setColumns(</span><span class="s2">10</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">nazwiskoTextField = </span><span class="s0">new </span><span class="s1">JTextField()</span><span class="s0">;</span>
+        <span class="s1">nazwiskoTextField.setBounds(</span><span class="s2">151</span><span class="s0">, </span><span class="s2">56</span><span class="s0">, </span><span class="s2">96</span><span class="s0">, </span><span class="s2">20</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(nazwiskoTextField)</span><span class="s0">;</span>
+        <span class="s1">nazwiskoTextField.setColumns(</span><span class="s2">10</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">JTextField indeksTextField = </span><span class="s0">new </span><span class="s1">JTextField()</span><span class="s0">;</span>
+        <span class="s1">indeksTextField.setBounds(</span><span class="s2">151</span><span class="s0">, </span><span class="s2">102</span><span class="s0">, </span><span class="s2">96</span><span class="s0">, </span><span class="s2">20</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(indeksTextField)</span><span class="s0">;</span>
+        <span class="s1">indeksTextField.setColumns(</span><span class="s2">10</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel imieNazwiskoIndeks = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">imieNazwiskoIndeks.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s3">&quot;Tahoma&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s2">15</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">imieNazwiskoIndeks.setBounds(</span><span class="s2">381</span><span class="s0">, </span><span class="s2">14</span><span class="s0">, </span><span class="s2">229</span><span class="s0">, </span><span class="s2">62</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(imieNazwiskoIndeks)</span><span class="s0">;</span>
+
+        <span class="s1">JSeparator separator = </span><span class="s0">new </span><span class="s1">JSeparator()</span><span class="s0">;</span>
+        <span class="s1">separator.setBounds(</span><span class="s2">10</span><span class="s0">, </span><span class="s2">144</span><span class="s0">, </span><span class="s2">936</span><span class="s0">, </span><span class="s2">26</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(separator)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_3 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;Quiz - O komputerach&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_3.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s3">&quot;Tahoma&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s2">15</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_3.setBounds(</span><span class="s2">36</span><span class="s0">, </span><span class="s2">158</span><span class="s0">, </span><span class="s2">366</span><span class="s0">, </span><span class="s2">26</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_3)</span><span class="s0">;</span>
+
+        <span class="s1">tysiac.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(tysiac.isSelected()) {</span>
+                    <span class="s1">dziesiec.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik += </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">tysiac.setBounds(</span><span class="s2">94</span><span class="s0">, </span><span class="s2">227</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(tysiac)</span><span class="s0">;</span>
+
+        <span class="s1">dziesiec.setBounds(</span><span class="s2">305</span><span class="s0">, </span><span class="s2">227</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(dziesiec)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_4 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;1. Ile megabajtów jest w gigabajcie?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4.setHorizontalAlignment(SwingConstants.LEFT)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4.setBounds(</span><span class="s2">51</span><span class="s0">, </span><span class="s2">195</span><span class="s0">, </span><span class="s2">470</span><span class="s0">, </span><span class="s2">25</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_4)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_4_1 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;2. Do czego jest używany twardy dysk?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.LEFT)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1.setBounds(</span><span class="s2">51</span><span class="s0">, </span><span class="s2">265</span><span class="s0">, </span><span class="s2">470</span><span class="s0">, </span><span class="s2">25</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_4_1)</span><span class="s0">;</span>
+
+        <span class="s1">zapis.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(zapis.isSelected()) {</span>
+                    <span class="s1">obliczenia.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik += </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+
+        <span class="s1">zapis.setBounds(</span><span class="s2">94</span><span class="s0">, </span><span class="s2">308</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(zapis)</span><span class="s0">;</span>
+
+        <span class="s1">obliczenia.setBounds(</span><span class="s2">305</span><span class="s0">, </span><span class="s2">308</span><span class="s0">, </span><span class="s2">171</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(obliczenia)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_4_1_1 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;3. Od czego skrótem jest </span><span class="s0">\&quot;</span><span class="s3">CD</span><span class="s0">\&quot;</span><span class="s3">?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1.setHorizontalAlignment(SwingConstants.LEFT)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1.setBounds(</span><span class="s2">51</span><span class="s0">, </span><span class="s2">348</span><span class="s0">, </span><span class="s2">470</span><span class="s0">, </span><span class="s2">25</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_4_1_1)</span><span class="s0">;</span>
+
+        <span class="s1">Compact.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Compact.isSelected()) {</span>
+                    <span class="s1">Central.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik += </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">Compact.setBounds(</span><span class="s2">94</span><span class="s0">, </span><span class="s2">380</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Compact)</span><span class="s0">;</span>
+
+        <span class="s1">Central.setBounds(</span><span class="s2">305</span><span class="s0">, </span><span class="s2">380</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Central)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_4_1_1_1 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;4. Jaki jest najpopularniejszy system operacyjny?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1_1.setHorizontalAlignment(SwingConstants.LEFT)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1_1.setBounds(</span><span class="s2">51</span><span class="s0">, </span><span class="s2">410</span><span class="s0">, </span><span class="s2">470</span><span class="s0">, </span><span class="s2">25</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_4_1_1_1)</span><span class="s0">;</span>
+
+        <span class="s1">Windows.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Windows.isSelected()) {</span>
+                    <span class="s1">Apple.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik += </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">Windows.setBounds(</span><span class="s2">94</span><span class="s0">, </span><span class="s2">441</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Windows)</span><span class="s0">;</span>
+
+        <span class="s1">Apple.setBounds(</span><span class="s2">305</span><span class="s0">, </span><span class="s2">441</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Apple)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_4_1_1_1_1 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;5. Jaka firma stworzyła </span><span class="s0">\&quot;</span><span class="s3">Internet Explorer</span><span class="s0">\&quot;</span><span class="s3">?&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1_1_1.setHorizontalAlignment(SwingConstants.LEFT)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_4_1_1_1_1.setBounds(</span><span class="s2">51</span><span class="s0">, </span><span class="s2">471</span><span class="s0">, </span><span class="s2">470</span><span class="s0">, </span><span class="s2">25</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_4_1_1_1_1)</span><span class="s0">;</span>
+
+        <span class="s1">Windows2.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s0">if</span><span class="s1">(Windows2.isSelected()) {</span>
+                    <span class="s1">Apple2.setSelected(</span><span class="s0">false</span><span class="s1">)</span><span class="s0">;</span>
+                    <span class="s1">licznikPunktow.setText(String.valueOf(licznik += </span><span class="s2">1</span><span class="s1">))</span><span class="s0">;</span>
+                <span class="s1">}</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">Windows2.setBounds(</span><span class="s2">94</span><span class="s0">, </span><span class="s2">502</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Windows2)</span><span class="s0">;</span>
+
+        <span class="s1">Apple2.setBounds(</span><span class="s2">305</span><span class="s0">, </span><span class="s2">503</span><span class="s0">, </span><span class="s2">109</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(Apple2)</span><span class="s0">;</span>
+
+        <span class="s1">JLabel lblNewLabel_5 = </span><span class="s0">new </span><span class="s1">JLabel(</span><span class="s3">&quot;Ilość punktów&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_5.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s3">&quot;Tahoma&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s2">13</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">lblNewLabel_5.setBounds(</span><span class="s2">508</span><span class="s0">, </span><span class="s2">166</span><span class="s0">, </span><span class="s2">140</span><span class="s0">, </span><span class="s2">33</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(lblNewLabel_5)</span><span class="s0">;</span>
+
+        <span class="s1">licznikPunktow.setFont(</span><span class="s0">new </span><span class="s1">Font(</span><span class="s3">&quot;Tahoma&quot;</span><span class="s0">, </span><span class="s1">Font.PLAIN</span><span class="s0">, </span><span class="s2">13</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">licznikPunktow.setBounds(</span><span class="s2">508</span><span class="s0">, </span><span class="s2">231</span><span class="s0">, </span><span class="s2">140</span><span class="s0">, </span><span class="s2">43</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(licznikPunktow)</span><span class="s0">;</span>
+
+        <span class="s1">JButton start = </span><span class="s0">new </span><span class="s1">JButton(</span><span class="s3">&quot;Zacznij&quot;</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">start.addActionListener(</span><span class="s0">new </span><span class="s1">ActionListener() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+
+                <span class="s1">imieNazwiskoIndeks.setText(String.format(</span><span class="s3">&quot;%s %s %s&quot;</span><span class="s0">,</span>
+                        <span class="s1">imieTextField.getText()</span><span class="s0">,</span>
+                        <span class="s1">nazwiskoTextField.getText()</span><span class="s0">,</span>
+                        <span class="s1">indeksTextField.getText()))</span><span class="s0">;</span>
+
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+        <span class="s1">start.setBounds(</span><span class="s2">280</span><span class="s0">, </span><span class="s2">101</span><span class="s0">, </span><span class="s2">89</span><span class="s0">, </span><span class="s2">23</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">frame.getContentPane().add(start)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
